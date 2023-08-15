@@ -9,14 +9,17 @@ import com.hamza.itiproject.repository.LoginRepository
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
+
+
     var loginLiveData = MutableLiveData<ModelUser?>()
     var successLoginLiveData = MutableLiveData<ModelLogin>()
     var errorLiveData = MutableLiveData<String>()
 
     private var repository: LoginRepository = LoginRepository()
 
+
     init {
-        loginLiveData=repository.loginLiveData
+        loginLiveData = repository.loginLiveData
         successLoginLiveData = repository.successLoginLiveData
         errorLiveData = repository.errorLiveData
     }

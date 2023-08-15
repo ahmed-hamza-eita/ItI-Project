@@ -14,6 +14,7 @@ import com.hamza.itiproject.R
 import com.hamza.itiproject.databinding.ActivityLoginBinding
 import com.hamza.itiproject.ui.posts.MainActivity
 import com.hamza.itiproject.utils.Const
+import com.hamza.itiproject.utils.showToast
 import com.hamza.itiproject.viewmodels.LoginViewModel
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -28,14 +29,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(_binding?.root)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         actions()
-         observers()
+        observers()
 
     }
 
     private fun observers() {
 
         loginViewModel.apply {
-             loginLiveData.observe(this@LoginActivity) {
+            loginLiveData.observe(this@LoginActivity) {
 
                 intent()
                 ProgressLoading.dismiss()
@@ -43,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
             errorLiveData.observe(this@LoginActivity) {
                 Toast.makeText(this@LoginActivity, it, Toast.LENGTH_SHORT)
                     .show()
+                showToast(it)
                 ProgressLoading.dismiss()
             }
         }
@@ -50,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun actions() {
         binding.btnLogin.setOnClickListener {
-             checkLogin()
+            checkLogin()
 
         }
     }
@@ -71,34 +73,34 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
     private fun intent() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
-/*
-    private fun login(email: String, password: String) {
-        lifecycleScope.launch {
-            val result = RetrofitConnection.getRetrofit(Const.BASE_URL_LOGIN)
-                .login(ModelLogin(email, password))
 
-            if (result.isSuccessful) {
+    /*
+        private fun login(email: String, password: String) {
+            lifecycleScope.launch {
+                val result = RetrofitConnection.getRetrofit(Const.BASE_URL_LOGIN)
+                    .login(ModelLogin(email, password))
+
+                if (result.isSuccessful) {
 
 
-                intent()
-                ProgressLoading.dismiss()
+                    intent()
+                    ProgressLoading.dismiss()
 
-            } else {
-                val error = JSONObject(result.errorBody()?.string())
-                Toast.makeText(this@LoginActivity, error.getString("message"), Toast.LENGTH_SHORT)
-                    .show()
-                ProgressLoading.dismiss()
+                } else {
+                    val error = JSONObject(result.errorBody()?.string())
+                    Toast.makeText(this@LoginActivity, error.getString("message"), Toast.LENGTH_SHORT)
+                        .show()
+                    ProgressLoading.dismiss()
+                }
             }
         }
-    }
 
- */
+     */
     override fun onDestroy() {
         super.onDestroy()
         _binding

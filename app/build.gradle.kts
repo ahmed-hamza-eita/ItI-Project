@@ -69,4 +69,14 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
+
+    //Toast Style
+    implementation ("io.github.muddz:styleabletoast:2.4.0")
+
+
+    //splash api
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+
+
 }

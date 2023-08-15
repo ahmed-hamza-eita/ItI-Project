@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 object MySharedPreferences {
     private var mContext: Context? = null
-    private const val SHARED_PREFERENCES_NAME = "test lab 8"
+    private const val SHARED_PREFERENCES_NAME = "sharedPreferences"
     private const val USER_EMAIL = "user email"
 
     fun init(context: Context) {

@@ -9,7 +9,7 @@ import com.hamza.itiproject.utils.Const
 import org.json.JSONObject
 
 class LoginRepository {
-    val loginLiveData = MutableLiveData<ModelUser?>()
+    var loginLiveData = MutableLiveData<ModelUser?>()
     var successLoginLiveData = MutableLiveData<ModelLogin>()
     var errorLiveData = MutableLiveData<String>()
 
